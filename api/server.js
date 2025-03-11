@@ -95,4 +95,8 @@ app.get("/playlist/:id", async (req, res) => {
 });
 
 // 🚀 Start the Server
-app.listen(PORT, () => console.log(`✅ Server running on Port: ${PORT}`));
+if (process.env.VERCEL) {
+  console.log("Running on Vercel - No need for PORT binding");
+} else {
+  app.listen(PORT, () => console.log(`✅ Server running on Port: ${PORT}`));
+}
