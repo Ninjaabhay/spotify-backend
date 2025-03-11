@@ -4,3 +4,5 @@ old_server.js
 
 .vercel
 serviceAccountKey.json
+service-account-key.json
+server0.js

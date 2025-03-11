@@ -5,6 +5,15 @@ const { google } = require("googleapis");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ✅ Apply CORS before defining routes
+app.use(
+  cors({
+    origin: "*", // Allow all domains (or specify your frontend URL)
+    methods: ["GET"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
 // Ensure GOOGLE_APPLICATION_CREDENTIALS is correctly set
 if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
   console.error(
@@ -82,14 +91,6 @@ app.get("/playlist/:id", async (req, res) => {
     res.status(500).json({ error: "Error fetching songs from Google Drive" });
   }
 });
-
-app.use(
-  cors({
-    origin: "*", // Allow all domains (or specify frontend URL)
-    methods: ["GET"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
 
 // 🚀 Start the Server
 app.listen(PORT, () => console.log(`✅ Server running on Port: ${PORT}`));
