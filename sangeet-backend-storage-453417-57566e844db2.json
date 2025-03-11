@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sangeet-backend-storage-453417",
+  "private_key_id": "57566e844db2593660145ebc12add6d577dca8ff",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC+BGA405Zc1EGX\nGq220qSnpUFW5Nf4ve6M6mRsJPLgprPUrShzgvK5Phb7kgy4IP676vKeiuGJtwQX\nIT7uXY21GqpkEkytlLx4vhZCet2kWfq62TElpgXeh0ELO2BfLv8+Z/fje5wuDyab\nw64HhqilQuNHjHsqkkyALJI0F7hh/dvocxbPS9GAVpI04PJWPYE0zXi19bf5wHBd\nBQTQZOKeoIljRo1d2RvitGAkEgafOmiDJgQbdfleJKBusFyTgZpQTtG51NmOl/QH\n7hrnzu3ZdROfgogO49opa/2UC1pZ6Jfq5wCfuFUQ3dEpjW8mJWp6UEr5J7Jsi7rs\nMv0rb23bAgMBAAECggEAKQVA0IO8/iVEU56KyeEHcrmWNXAJv8Ug7oLbUw1W8XCL\neeo3xVgLljn1NDH/VPCqjV7XKarJrbU4yNWAhGzl3qb3Cct5ii+F0HsYyxlDJ+vU\n2OlyVrJUqgmA3S/gSiwXJh3DwfQ5bygOKapAs5c6aRLbheKp5DLZGQKGPYCxaVXI\nsSZIJM5QbmZTSCiRD2s93KaATkqicHTEp46NZ+CzjGKRptcaUXkkrjQl8Ph7KIlN\n+iVYVw22gpZh9esJU7RHAYQ/xz42xUyrx6GH7GUc7hmvGlR0DtreR1maHebZ6vSj\nZFihLf5KaWgg0ze6ZDeEu4sYYrhYOlq/OiUUhsLtoQKBgQDyVxAI3hXk0XGH5LVH\nuglGOQr2OiQMgHin8AuXWDE5YeDtXdRVvrG4vAlzQXnRKKSUZeY0JYn3LdxQwcjZ\n1cwLlEZJDqhQFmtbCSClyAGiGvkh/cfVK9uGrLn5D/fN2fvKyzUxOJ8IyMOzYWQD\nYbDjYxCJL4XwLsWkIjVkuQUm3QKBgQDIukyFhtfiLO1Cy5PLwmn73zyFb9LQjC9x\no4+9HQpFeywRGlmD+EK1BaYAQxpE7wNvcmCzAJi+8bthw69uf4H5v6prXWd9B34A\nx439hXlQUW+eLhPltWGxLRUA+ngDKp4oFbTAAt2Bs66FzO3Aqt8M7yeoD4kY1B7w\ns8Pcs7WwFwKBgQCqEjGdl4ZT7Cy5yubx7HxfvN6ViJ4N7AdBDHSGBQ2ekLNSwfun\nJUoCNGyJZ1T/VX+S6aRRylp1jsjEIAs93Q3yvl9JHDFA60ryO4ie76s9waI/maOp\nVbsdW5C0WuF0pNtRKaUt4uexOXwmIl4XBXMnUTmknSZpNdncY2mHQ1V7PQKBgHbv\nbEfyDhjF5g+d8ITbPVEwhPvLtm47oiEDeTfk7SEeSo4XvtKjV2NLZYDiQb52oOJ4\nMzPdNqRtN0pGWLxwcOM63g+f2KIMvmxX0ZpWa/tbRXfEdaW2Q5xnyfo6bsHxjqTR\nt7fN+tHPVamSM43lsSRI0IaULfe4OF0HJxaupQkhAoGBAMz2xn4hSgF0+Dfe87Im\nynKRGs8fHP5e3yjYckKMtnS//+OU6wmZbrk5PXDKZs5xAQdNKMGGe1dZFhP1GJae\n8T5JnW30FhtmI1Z20ukmcomBL/xFZUX988pO8wmd1SSWXMzKtY/OniCdyX7lYxR5\nW+0VS/jgevF0FiyP/y/sNn3v\n-----END PRIVATE KEY-----\n",
+  "client_email": "sangeetstorageservice@sangeet-backend-storage-453417.iam.gserviceaccount.com",
+  "client_id": "108524420885617198941",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sangeetstorageservice%40sangeet-backend-storage-453417.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
