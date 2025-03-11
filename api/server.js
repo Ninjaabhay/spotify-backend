@@ -5,10 +5,25 @@ const { google } = require("googleapis");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ Load Service Account Key
+// Ensure GOOGLE_APPLICATION_CREDENTIALS is correctly set
+if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+  console.error(
+    "❌ GOOGLE_APPLICATION_CREDENTIALS is missing! Set it in Vercel."
+  );
+  process.exit(1);
+}
+
+// ✅ Decode Base64 JSON Key
+const serviceAccount = JSON.parse(
+  Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, "base64").toString(
+    "utf-8"
+  )
+);
+
+// ✅ Google Auth Configuration
 const auth = new google.auth.GoogleAuth({
-  keyFile: "serviceAccountKey.json", // Ensure this file is in your backend folder
-  scopes: ["https://www.googleapis.com/auth/drive.readonly"], // ✅ Read-only access
+  credentials: serviceAccount,
+  scopes: ["https://www.googleapis.com/auth/drive.readonly"],
 });
 
 const drive = google.drive({ version: "v3", auth });
@@ -21,7 +36,7 @@ app.get("/", (req, res) => {
 // ✅ Get list of playlists (Google Drive folders)
 app.get("/playlists", async (req, res) => {
   try {
-    const parentFolderId = "1LctVT8qLRY1lsL4dCcVTIXX2GKeGEDVP"; // 🔹 Replace with your Google Drive parent folder ID
+    const parentFolderId = "1LctVT8qLRY1lsL4dCcVTIXX2GKeGEDVP"; // Replace with your actual folder ID
     const authClient = await auth.getClient();
 
     const response = await drive.files.list({
@@ -47,7 +62,7 @@ app.get("/playlists", async (req, res) => {
 // ✅ Get list of songs in a selected playlist (Google Drive folder)
 app.get("/playlist/:id", async (req, res) => {
   try {
-    const playlistFolderId = req.params.id; // 🔹 Get folder ID from request
+    const playlistFolderId = req.params.id;
     const authClient = await auth.getClient();
 
     const response = await drive.files.list({
