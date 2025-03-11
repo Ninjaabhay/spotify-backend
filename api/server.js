@@ -4,11 +4,9 @@ const { google } = require("googleapis");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// ✅ Apply CORS globally (ALLOWING ALL ORIGINS)
 app.use(
   cors({
-    origin: "https://ninjaabhay.github.io", // Allow all origins, change to frontend URL if needed
+    origin: "*", // Allow all domains (or specify frontend URL)
     methods: ["GET"],
     allowedHeaders: ["Content-Type"],
   })
@@ -45,7 +43,6 @@ app.get("/", (req, res) => {
 // ✅ Get list of playlists (Google Drive folders)
 app.get("/playlists", async (req, res) => {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // 🔥 Extra CORS Header
     const parentFolderId = "1LctVT8qLRY1lsL4dCcVTIXX2GKeGEDVP"; // Replace with your actual folder ID
     const authClient = await auth.getClient();
 
@@ -72,7 +69,6 @@ app.get("/playlists", async (req, res) => {
 // ✅ Get list of songs in a selected playlist (Google Drive folder)
 app.get("/playlist/:id", async (req, res) => {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // 🔥 Extra CORS Header
     const playlistFolderId = req.params.id;
     const authClient = await auth.getClient();
 
@@ -93,6 +89,7 @@ app.get("/playlist/:id", async (req, res) => {
     res.status(500).json({ error: "Error fetching songs from Google Drive" });
   }
 });
+
 
 // 🚀 Start the Server
 app.listen(PORT, () => console.log(`✅ Server running on Port: ${PORT}`));
