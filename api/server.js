@@ -5,10 +5,10 @@ const { google } = require("googleapis");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ Apply CORS before defining routes
+// ✅ Apply CORS globally (ALLOWING ALL ORIGINS)
 app.use(
   cors({
-    origin: "*", // Allow all domains (or specify your frontend URL)
+    origin: "*", // Allow all origins, change to frontend URL if needed
     methods: ["GET"],
     allowedHeaders: ["Content-Type"],
   })
@@ -45,6 +45,7 @@ app.get("/", (req, res) => {
 // ✅ Get list of playlists (Google Drive folders)
 app.get("/playlists", async (req, res) => {
   try {
+    res.setHeader("Access-Control-Allow-Origin", "*"); // 🔥 Extra CORS Header
     const parentFolderId = "1LctVT8qLRY1lsL4dCcVTIXX2GKeGEDVP"; // Replace with your actual folder ID
     const authClient = await auth.getClient();
 
@@ -71,6 +72,7 @@ app.get("/playlists", async (req, res) => {
 // ✅ Get list of songs in a selected playlist (Google Drive folder)
 app.get("/playlist/:id", async (req, res) => {
   try {
+    res.setHeader("Access-Control-Allow-Origin", "*"); // 🔥 Extra CORS Header
     const playlistFolderId = req.params.id;
     const authClient = await auth.getClient();
 
