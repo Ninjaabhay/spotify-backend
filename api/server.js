@@ -83,5 +83,13 @@ app.get("/playlist/:id", async (req, res) => {
   }
 });
 
+app.use(
+  cors({
+    origin: "*", // Allow all domains (or specify frontend URL)
+    methods: ["GET"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
 // 🚀 Start the Server
 app.listen(PORT, () => console.log(`✅ Server running on Port: ${PORT}`));
