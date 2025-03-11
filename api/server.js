@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 // ✅ Apply CORS globally (ALLOWING ALL ORIGINS)
 app.use(
   cors({
-    origin: "*", // Allow all origins, change to frontend URL if needed
+    origin: "https://ninjaabhay.github.io", // Allow all origins, change to frontend URL if needed
     methods: ["GET"],
     allowedHeaders: ["Content-Type"],
   })
