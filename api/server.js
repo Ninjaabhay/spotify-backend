@@ -5,16 +5,20 @@ const { google } = require("googleapis");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ Apply CORS globally (ALLOWING ALL ORIGINS)
+// ✅ Apply CORS globally
 app.use(
-  cors({
-    origin: "*", // Allow all origins, change to frontend URL if needed
-    methods: ["GET"],
-    allowedHeaders: ["Content-Type"],
-  })
+  cors({ origin: "*", methods: ["GET"], allowedHeaders: ["Content-Type"] })
 );
 
-// Ensure GOOGLE_APPLICATION_CREDENTIALS is correctly set
+// ✅ Ensure CORS headers for all responses
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
+// ✅ Ensure GOOGLE_APPLICATION_CREDENTIALS is correctly set
 if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
   console.error(
     "❌ GOOGLE_APPLICATION_CREDENTIALS is missing! Set it in Vercel."
@@ -22,12 +26,10 @@ if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
   process.exit(1);
 }
 
-// ✅ Decode Base64 JSON Key
-const serviceAccount = JSON.parse(
-  Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, "base64").toString(
-    "utf-8"
-  )
-);
+// ✅ Load Google Service Account
+const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS
+  ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+  : require("./service-account-key.json"); // Fallback for local testing
 
 // ✅ Google Auth Configuration
 const auth = new google.auth.GoogleAuth({
@@ -37,15 +39,14 @@ const auth = new google.auth.GoogleAuth({
 
 const drive = google.drive({ version: "v3", auth });
 
-// ✅ Home Route (to test if backend is running)
+// ✅ Home Route (Test if backend is running)
 app.get("/", (req, res) => {
   res.send("🎵 Sangeet Backend is running on Vercel!");
 });
 
 // ✅ Get list of playlists (Google Drive folders)
-app.get("/playlists", async (req, res) => {
+app.get("/api/playlists", async (req, res) => {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // 🔥 Extra CORS Header
     const parentFolderId = "1LctVT8qLRY1lsL4dCcVTIXX2GKeGEDVP"; // Replace with your actual folder ID
     const authClient = await auth.getClient();
 
@@ -70,9 +71,8 @@ app.get("/playlists", async (req, res) => {
 });
 
 // ✅ Get list of songs in a selected playlist (Google Drive folder)
-app.get("/playlist/:id", async (req, res) => {
+app.get("/api/playlist/:id", async (req, res) => {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // 🔥 Extra CORS Header
     const playlistFolderId = req.params.id;
     const authClient = await auth.getClient();
 
@@ -94,9 +94,9 @@ app.get("/playlist/:id", async (req, res) => {
   }
 });
 
-// 🚀 Start the Server
-if (process.env.VERCEL) {
-  console.log("Running on Vercel - No need for PORT binding");
-} else {
+// ✅ Fix: Proper Vercel Deployment (No need for app.listen)
+if (!process.env.VERCEL) {
   app.listen(PORT, () => console.log(`✅ Server running on Port: ${PORT}`));
 }
+
+module.exports = app; // ✅ Required for Vercel
